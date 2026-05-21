@@ -1,0 +1,6 @@
+{
+  "name": "SwiftServe",
+  "description": "Premium digital infrastructure and workflow engine for informal service businesses in Africa, starting with phone repairs and supporting future multi-service expansion.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
