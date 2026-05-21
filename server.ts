@@ -69,7 +69,7 @@ app.post("/api/ai/suggest", async (req: Request, res: Response) => {
   }
 
   try {
-    const prompt = `You are the master repair assistant of SwiftServe. Analyze this electronic/phone repair request and provide structured diagnosis suggestions.
+    const prompt = `You are the master repair assistant of Global Phix.IT. Analyze this electronic/phone repair request and provide structured diagnosis suggestions.
     Device details:
     Brand: ${brand || "Unknown"}
     Model: ${model || "Unknown"}
@@ -136,9 +136,9 @@ app.post("/api/ai/chat", async (req: Request, res: Response) => {
     const chat = client.chats.create({
       model: "gemini-3.5-flash",
       config: {
-        systemInstruction: `You are SwiftServe AI chatbot, an interactive premium assistant for SwiftServe digital platform in Africa (Ghana, Nigeria, Kenya).
+        systemInstruction: `You are Global Phix.IT AI chatbot, an interactive premium assistant for Global Phix.IT digital platform in Africa (Ghana, Nigeria, Kenya).
         We connect customers with highly certified phone repair technicians and multiple small business offerings like Errands, Grocery, Laundry, logistics, etc.
-        Help answer friendly inquiries about repair prices, estimated times, how SwiftServe works (e.g., customer submits ticket, technician accepts, customer pays, receives updates via SMS/WhatsApp).
+        Help answer friendly inquiries about repair prices, estimated times, how Global Phix.IT works (e.g., customer submits ticket, technician accepts, customer pays, receives updates via SMS/WhatsApp).
         Sound modern, professional, extremely helpful, warm, and tech-savvy. Use Ghanaian currency context (Ghana Cedis GHS, MoMo - Mobile Money payments) but remain open-minded. Keep your replies structured, concise, and easy to read.`
       }
     });
@@ -169,7 +169,7 @@ app.post("/api/ai/voice-to-ticket", async (req: Request, res: Response) => {
   }
 
   try {
-    const prompt = `You are the master voice voice-to-order processor for SwiftServe.
+    const prompt = `You are the master voice voice-to-order processor for Global Phix.IT.
     Analyze the user's spoken request (expressed in text transcripts) and structure it into a perfect digital ticket.
     Voice Request: "${voiceText}"
     
@@ -280,7 +280,7 @@ function generateServerFallbackChat(message: string): string {
   const msgLower = message.toLowerCase();
 
   if (msgLower.includes("price") || msgLower.includes("cost") || msgLower.includes("how much")) {
-    return `💰 **SwiftServe Pricing Info**:
+    return `💰 **Global Phix.IT Pricing Info**:
 - **Charging Issue**: GH₵ 100 - GH₵ 250 (Usually taken 45 mins)
 - **Screen replacements**: GH₵ 350 - GH₵ 1,200+ (relative to Premium/Original panels)
 - **Battery replacement**: GH₵ 180 - GH₵ 450 (OEM grade, safe swap)
@@ -292,18 +292,18 @@ function generateServerFallbackChat(message: string): string {
 1. When a technician accepts your order and sets his diagnostics price or invoice, you will see a "Pay" trigger button.
 2. Enter your MoMo number (**MTN, Telecel, or AirtelTigo**).
 3. The platform simulates/triggers a standard USSD payment prompt request on your device.
-4. Once verified, your SwiftServe repair tracker updates instantly to "Fully Paid" or "Deposit Paid", and your funds are securely escrowed for technicians. Can also download immediate receipts!`;
+4. Once verified, your Global Phix.IT repair tracker updates instantly to "Fully Paid" or "Deposit Paid", and your funds are securely escrowed for technicians. Can also download immediate receipts!`;
   }
 
   if (msgLower.includes("how do") || msgLower.includes("workflow") || msgLower.includes("stage")) {
-    return `⚙️ **SwiftServe Core Operations Workflow**:
+    return `⚙️ **Global Phix.IT Core Operations Workflow**:
 1. **Request Received**: Customer places repair ticket with brand, model, descriptions, or voice-to-order tool.
 2. **Diagnosing**: Specialist accepts and inspects the structural problems.
 3. **Repair In Progress**: Core technician executes board, displays, or port fixes.
 4. **Ready for Pickup**: Device compiles cleanly & verified. Customers pay balance, and pick up, or technician delivers to doorstep!`;
   }
 
-  return `🤖 Salut! I am the **SwiftServe AI Assistant**. I'm here to support service businesses across Africa, beginning with micro phone repairs in Accra, Lagos, & Nairobi.
+  return `🤖 Salut! I am the **Global Phix.IT AI Assistant**. I'm here to support service businesses across Africa, beginning with micro phone repairs in Accra, Lagos, & Nairobi.
 - Ask me about **"repairs pricing estimates"**,
 - Ask me how to use the **"Mobile Money (MoMo)" payment gateway**,
 - Ask me about **"repair stages"** and how notifications trigger automatically.
@@ -389,7 +389,7 @@ async function startServer() {
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`[SwiftServe Server] Running and ready on http://localhost:${PORT}`);
+    console.log(`[Global Phix.IT Server] Running and ready on http://localhost:${PORT}`);
   });
 }
 

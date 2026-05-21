@@ -21,7 +21,7 @@ export default function AIChatbot({ currentRole }: AIChatbotProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'model',
-      text: `Hello! I am your SwiftServe AI Smart Assistant. 📱 How can I help you digitize your service business workflows today?`
+      text: `Hello! I am your Global Phix.IT AI Smart Assistant. 📱 How can I help you digitize your service business workflows today?`
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -74,7 +74,7 @@ export default function AIChatbot({ currentRole }: AIChatbotProps) {
       // Soft interactive fallback so users are never stuck
       setMessages(prev => [...prev, { 
         role: 'model', 
-        text: "I am having trouble reaching the main server. Let me remind you that SwiftServe works with MTN MoMo and Telecel Cash! You can create repairs, update them, and pay via mobile money automatically! Let me know if you would like me to draft a quick ticket for you.",
+        text: "I am having trouble reaching the main server. Let me remind you that Global Phix.IT works with MTN MoMo and Telecel Cash! You can create repairs, update them, and pay via mobile money automatically! Let me know if you would like me to draft a quick ticket for you.",
         isFallback: true
       }]);
     } finally {
@@ -94,7 +94,7 @@ export default function AIChatbot({ currentRole }: AIChatbotProps) {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-sans" id="swiftserve-ai-chat-root">
+    <div className="fixed bottom-6 right-6 z-50 font-sans" id="globalphix-ai-chat-root">
       {/* Bot Floating Launcher Icon */}
       {!isOpen && (
         <button
@@ -125,7 +125,7 @@ export default function AIChatbot({ currentRole }: AIChatbotProps) {
               </div>
               <div className="text-left">
                 <h3 className="text-sm font-semibold text-white tracking-tight flex items-center gap-1.5 font-display">
-                  SwiftServe AI
+                  Global Phix.IT AI
                   <Sparkles className="h-3 w-3 text-amber-200 fill-amber-200 animate-pulse" />
                 </h3>
                 <p className="text-[11px] text-primary-200">Active • Ghana, Lagos & Nairobi Assistant</p>

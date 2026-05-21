@@ -63,8 +63,8 @@ import VoiceToOrder from './components/VoiceToOrder';
 const INITIAL_DEMO_USERS: User[] = [
   {
     id: 'cust-1',
-    email: 'client@swiftserve.com',
-    name: 'SwiftServe Client Partner',
+    email: 'client@global-phix.it',
+    name: 'Global Phix.IT Client Partner',
     role: 'customer',
     phone: '+233 24 555 8921',
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
@@ -72,8 +72,8 @@ const INITIAL_DEMO_USERS: User[] = [
   },
   {
     id: 'tech-1',
-    email: 'tech@swiftserve.com',
-    name: 'SwiftServe Premium Tech Partner',
+    email: 'tech@global-phix.it',
+    name: 'Global Phix.IT Premium Tech Partner',
     role: 'technician',
     phone: '+233 27 333 1192',
     avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80',
@@ -84,8 +84,8 @@ const INITIAL_DEMO_USERS: User[] = [
   },
   {
     id: 'admin-1',
-    email: 'admin@swiftserve.com',
-    name: 'SwiftServe System Manager',
+    email: 'admin@global-phix.it',
+    name: 'Global Phix.IT System Manager',
     role: 'admin',
     phone: '+233 20 111 2222',
     avatarUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=120&q=80',
@@ -104,42 +104,6 @@ const INITIAL_SERVICE_DEFINITIONS: ServiceDefinition[] = [
     iconName: 'Smartphone',
     basePrice: '₵120',
     active: true
-  },
-  {
-    type: 'errands',
-    name: 'Smart Errands',
-    tagline: 'Delegate chores, queues & school errands',
-    description: 'Trained runners to represent you or deliver critical items quickly.',
-    iconName: 'Activity',
-    basePrice: '₵45',
-    active: false
-  },
-  {
-    type: 'laundry',
-    name: 'Doorstep Laundry',
-    tagline: 'We wash, iron & fold, with 24h courier delivery',
-    description: 'Fully automated dry clean & handwash care for delicate local fabrics.',
-    iconName: 'Layers',
-    basePrice: '₵60',
-    active: false
-  },
-  {
-    type: 'cleaning',
-    name: 'Deep Cleaning',
-    tagline: 'Domestic & workspace deep sanitizing',
-    description: 'Environmentally safe materials and verified local workers.',
-    iconName: 'Wrench',
-    basePrice: '₵150',
-    active: false
-  },
-  {
-    type: 'grocery',
-    name: 'Open Market Shopping',
-    tagline: 'Fresh food items directly from local hubs',
-    description: 'Purchase fresh farm supplies directly from Makola or Kejetia with live price negotiation support.',
-    iconName: 'ShoppingBag',
-    basePrice: '₵50',
-    active: false
   }
 ];
 
@@ -151,13 +115,12 @@ export default function App() {
   
   // App state engine
   const [tickets, setTickets] = useState<RepairTicket[]>(() => {
-    const local = localStorage.getItem('swiftserve_tickets');
+    const local = localStorage.getItem('globalphix_tickets') || localStorage.getItem('swiftserve_tickets');
     return local ? JSON.parse(local) : INITIAL_DEMO_TICKETS;
   });
   
   const [services, setServices] = useState<ServiceDefinition[]>(() => {
-    const local = localStorage.getItem('swiftserve_services');
-    return local ? JSON.parse(local) : INITIAL_SERVICE_DEFINITIONS;
+    return INITIAL_SERVICE_DEFINITIONS;
   });
 
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -239,12 +202,9 @@ export default function App() {
 
   // Save changes locally
   useEffect(() => {
+    localStorage.setItem('globalphix_tickets', JSON.stringify(tickets));
     localStorage.setItem('swiftserve_tickets', JSON.stringify(tickets));
   }, [tickets]);
-
-  useEffect(() => {
-    localStorage.setItem('swiftserve_services', JSON.stringify(services));
-  }, [services]);
 
   // Toast automatic dismiss effect controller
   useEffect(() => {
@@ -358,7 +318,7 @@ export default function App() {
       date: newTicket.date,
       stage: 'Request Received',
       stageHistory: [
-        { stage: 'Request Received', timestamp: new Date().toISOString(), notes: 'Successfully synchronized into SwiftServe micro-channels.' }
+        { stage: 'Request Received', timestamp: new Date().toISOString(), notes: 'Successfully synchronized into Global Phix.IT micro-channels.' }
       ],
       priceEstimate: aiSuggestion ? {
         min: aiSuggestion.estimatedCostMin,
@@ -672,8 +632,8 @@ export default function App() {
     e.preventDefault();
     const newUser: User = {
       id: `usr-${Math.floor(100 + Math.random() * 900)}`,
-      email: authForm.email || 'user@swiftserve.com',
-      name: authForm.name || 'SwiftServe Client',
+      email: authForm.email || 'user@global-phix.it',
+      name: authForm.name || 'Global Phix.IT Client',
       role: authForm.role || 'customer',
       phone: authForm.phone || '+233 24 555 8921',
       avatarUrl: authForm.role === 'technician' 
@@ -711,7 +671,7 @@ export default function App() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-white tracking-tight font-display">SwiftServe</span>
+                <span className="text-lg font-bold text-white tracking-tight font-display">Global Phix.IT</span>
                 <span className="text-[10px] bg-indigo-500/20 text-indigo-200 px-2 py-0.5 rounded-full border border-indigo-500/30">Lagos-Accra-Nairobi</span>
               </div>
               <p className="text-[10px] text-slate-400">African Informal Service Business Gateway</p>
@@ -804,7 +764,7 @@ export default function App() {
 
             {authView === 'login' && (
               <div>
-                <h2 className="text-2xl font-bold font-display text-white mb-2">Login to SwiftServe</h2>
+                <h2 className="text-2xl font-bold font-display text-white mb-2">Login to Global Phix.IT</h2>
                 <p className="text-xs text-slate-400 mb-6 font-sans">Enter credentials to unlock Africa's digital workflow operating system</p>
                 
                 <form onSubmit={handleLoginSubmit} className="space-y-4">
@@ -864,7 +824,7 @@ export default function App() {
 
             {authView === 'signup' && (
               <div>
-                <h2 className="text-2xl font-bold font-display text-white mb-2">Create SwiftServe Account</h2>
+                <h2 className="text-2xl font-bold font-display text-white mb-2">Create Global Phix.IT Account</h2>
                 <p className="text-xs text-slate-400 mb-6 font-sans">Choose your business identity category</p>
 
                 <form onSubmit={handleSignupSubmit} className="space-y-4 text-left">
@@ -1153,7 +1113,7 @@ export default function App() {
                           <div className="max-w-md mx-auto space-y-1">
                             <h4 className="text-sm font-bold text-white">No active repairs found</h4>
                             <p className="text-xs text-slate-400 leading-relaxed">
-                              You have no pending micro-repairs or errands. Start a secure job by tapping "Standard Repair Request" or speak directly to our Voice-to-Order AI assistant!
+                              You have no pending micro-repairs. Start a secure job by tapping "Standard Repair Request" or speak directly to our Voice-to-Order AI assistant!
                             </p>
                           </div>
                         </div>
@@ -1238,8 +1198,8 @@ export default function App() {
               {activeTab === 'services' && (
                 <div className="space-y-6">
                   <div className="text-left space-y-1">
-                    <h1 className="text-2xl font-bold text-white font-display">SwiftServe Universal Chores & Services Market</h1>
-                    <p className="text-xs text-slate-400">The premier platform to request phone repairs, chores, errands, market logistics, laundry and delivery.</p>
+                    <h1 className="text-2xl font-bold text-white font-display">Global Phix.IT Professional Device Repair Market</h1>
+                    <p className="text-xs text-slate-400">The premier platform to request certified, high-quality, and secure phone and device repairs with instant AI diagnostics.</p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1265,17 +1225,7 @@ export default function App() {
 
                           <div className="space-y-2 mb-6">
                             <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white mb-2">
-                              {srv.type === 'phone_repair' ? (
-                                <Smartphone className="w-5 h-5 text-indigo-400" />
-                              ) : srv.type === 'errands' ? (
-                                <Activity className="w-5 h-5 text-purple-400" />
-                              ) : srv.type === 'laundry' ? (
-                                <Layers className="w-5 h-5 text-amber-400" />
-                              ) : srv.type === 'cleaning' ? (
-                                <Wrench className="w-5 h-5 text-teal-400" />
-                              ) : (
-                                <ShoppingBag className="w-5 h-5 text-red-400" />
-                              )}
+                              <Smartphone className="w-5 h-5 text-indigo-400" />
                             </div>
                             <h3 className="text-base font-bold text-white">{srv.name}</h3>
                             <p className="text-xs text-slate-300 italic">{srv.tagline}</p>
@@ -1380,7 +1330,7 @@ export default function App() {
                       <div className="bg-gradient-to-r from-purple-950/40 to-indigo-950/40 p-5 rounded-2xl border border-indigo-500/20 text-left space-y-2.5">
                         <div className="flex items-center gap-2 text-indigo-300 text-xs font-bold">
                           <Cpu className="w-4 h-4 text-purple-400 animate-spin" />
-                          <span>SwiftServe AI Diagnostics Estimate</span>
+                          <span>Global Phix.IT AI Diagnostics Estimate</span>
                           <span className="text-[9px] bg-indigo-500/30 text-indigo-100 px-1.5 py-0.5 rounded">Processed in Clouds</span>
                         </div>
 
@@ -1533,7 +1483,7 @@ export default function App() {
                               ) : (
                                 <button
                                   onClick={() => {
-                                    showToast(`Generating invoice receipt stream for ticket ${tkt.id}. Settle amount: GH₵ ${tkt.finalPrice || 150}.00. SwiftServe Escrow Secured.`);
+                                    showToast(`Generating invoice receipt stream for ticket ${tkt.id}. Settle amount: GH₵ ${tkt.finalPrice || 150}.00. Global Phix.IT Escrow Secured.`);
                                   }}
                                   className="mx-auto bg-white/10 hover:bg-white/20 text-[10px] text-white px-2.5 py-1 rounded flex items-center justify-center gap-1"
                                 >
@@ -1644,7 +1594,7 @@ export default function App() {
                   <div className="p-5 bg-gradient-to-r from-purple-950/40 to-indigo-950/40 border border-indigo-500/20 rounded-3xl text-left space-y-3.5">
                     <div className="flex items-center gap-2 text-indigo-300 text-xs font-bold uppercase tracking-widest font-mono">
                       <Cpu className="w-4 h-4 text-purple-400 animate-spin" />
-                      <span>SwiftServe Certified AI Technician Copilot</span>
+                      <span>Global Phix.IT Certified AI Technician Copilot</span>
                     </div>
                     <ul className="space-y-2.5 text-xs text-slate-300 list-disc list-inside">
                       <li>⚠️ <strong>Stock Alerts</strong>: iPhone 11 & XR replacement display panels Surged in demand in Kejetia Market region (40% inventory depletion speed).</li>
@@ -1665,7 +1615,7 @@ export default function App() {
                           <div className="max-w-md mx-auto space-y-1">
                             <h4 className="text-sm font-bold text-white">No active assigned jobs</h4>
                             <p className="text-xs text-slate-400 leading-relaxed">
-                              You currently have no active assigned repairs. Once clients submit requests via SwiftServe, they will route instantly to your queue for diagnosis and escrow settlement actions.
+                              You currently have no active assigned repairs. Once clients submit requests via Global Phix.IT, they will route instantly to your queue for diagnosis and escrow settlement actions.
                             </p>
                           </div>
                         </div>
@@ -1784,35 +1734,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Modular Chores Service toggles (Multi-service expansion illustrative controls) */}
-                  <div className="bg-white/5 backdrop-blur-sm rounded-[32px] p-6 border border-white/10 space-y-4">
-                    <div>
-                      <h3 className="text-base font-bold text-white font-display">Multi-Service Expansion Control Center</h3>
-                      <p className="text-xs text-slate-400">HQ Admin can easily switch on new micro-service gateways in real-time, instantly generating client UI booking cards.</p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2">
-                      {services.map(srv => (
-                        <div key={srv.type} className="bg-slate-900/60 p-4 rounded-2xl border border-white/5 flex items-center justify-between">
-                          <div>
-                            <span className="text-xs font-bold text-white block truncate max-w-[120px]">{srv.name}</span>
-                            <span className="text-[9px] text-slate-400 uppercase font-mono">{srv.type}</span>
-                          </div>
-                          <button
-                            onClick={() => handleToggleService(srv.type)}
-                            className={`px-3 py-1.5 rounded-xl text-[10px] font-bold transition-all ${
-                              srv.active
-                                ? 'bg-emerald-600 text-white'
-                                : 'bg-red-500/10 text-red-400 hover:bg-red-500/20'
-                            }`}
-                          >
-                            {srv.active ? 'Enabled' : 'Disabled'}
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
                   {/* Dual columns for Approve users and Disputes claims */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     
@@ -1879,7 +1800,7 @@ export default function App() {
               {activeTab === 'settings' && (
                 <div className="bg-white/5 backdrop-blur-md rounded-[32px] p-8 border border-white/10 text-left max-w-xl mx-auto space-y-6">
                   <div>
-                    <h1 className="text-xl font-bold text-white font-display">SwiftServe Smart Security & Wallet Profile</h1>
+                    <h1 className="text-xl font-bold text-white font-display">Global Phix.IT Smart Security & Wallet Profile</h1>
                     <p className="text-xs text-slate-400">Manage Mobile Money escrow numbers, verification documents, and active user roles.</p>
                   </div>
 
@@ -1928,7 +1849,7 @@ export default function App() {
                     <div className="p-4 bg-slate-900/60 rounded-2xl border border-white/5 space-y-2 text-xs">
                       <h3 className="font-bold text-white">Sustained African Localized Currencies</h3>
                       <p className="text-slate-400 leading-relaxed text-[11px]">
-                        SwiftServe is built to default transactions automatically relative to region: GHS (Ghana Cedis), NGN (Nigerian Naira) and KES (Kenyan Shillings). Balance changes update live logs.
+                        Global Phix.IT is built to default transactions automatically relative to region: GHS (Ghana Cedis), NGN (Nigerian Naira) and KES (Kenyan Shillings). Balance changes update live logs.
                       </p>
                     </div>
 
@@ -2107,15 +2028,15 @@ export default function App() {
                   <span className="text-2xl">📲</span>
                   <div>
                     <span className="font-black text-slate-800 text-sm block">MTN MoMo Pay Request Received</span>
-                    <span className="text-xs text-slate-600">Merchant Code: SWIFTSERVE_MGMT</span>
+                    <span className="text-xs text-slate-600">Merchant Code: GLOBALPHIX_MGMT</span>
                   </div>
                 </div>
 
                 <div className="p-4 bg-slate-50 rounded-2xl space-y-2 text-xs">
                   <p className="font-bold text-slate-700">Visual Simulated Prompt on user's phone:</p>
                   <div className="border border-slate-200 bg-slate-950 text-emerald-400 p-3 rounded font-mono text-[11px] space-y-2">
-                    <p>SwiftServe GHS Terminal:</p>
-                    <p>"Do you wish to authorize GH₵ {momoModal.amount}.50 GHS deposit to Mensah Premium repairs?"</p>
+                    <p>Global Phix.IT GHS Terminal:</p>
+                    <p>"Do you wish to authorize GH₵ {momoModal.amount}.50 GHS deposit to Global Phix.IT Specialised Labs?"</p>
                     <div className="flex gap-2 text-white">
                       <span>1) Confirm PIN</span>
                       <span>2) Cancel</span>
