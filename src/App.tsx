@@ -672,7 +672,7 @@ export default function App() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-lg font-bold text-white tracking-tight font-display">Global Phix.IT</span>
-                <span className="text-[10px] bg-indigo-500/20 text-indigo-200 px-2 py-0.5 rounded-full border border-indigo-500/30">Lagos-Accra-Nairobi</span>
+                <span className="text-[10px] bg-indigo-500/20 text-indigo-200 px-2 py-0.5 rounded-full border border-indigo-500/30">Accra</span>
               </div>
               <p className="text-[10px] text-slate-400">African Informal Service Business Gateway</p>
             </div>
